@@ -4,6 +4,7 @@ FE_PREVIEW="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat"
 FE_TIEBREAK="length,begin,end,index"
 FE_CACHE=true
 FE_CACHE_PATH=$HOME/.config/repo-la.txt
+FE_CACHE_INTERVAL=$(( 60 * 60 * 24 * 15 ))
 
 if ! command -v fzf >/dev/null; then
     echo 'fzf command not found: please install via "sudo eopkg install fzf"'
@@ -40,7 +41,7 @@ fzf_eopkg_cache_available() {
 
 if $FE_CACHE; then
     if [ -f "$FE_CACHE_PATH" ]; then
-        if [ $(expr $(date +%s) - $(date +%s -r $FE_CACHE_PATH)) -gt 1296000 ]; then
+        if [ $(expr $(date +%s) - $(date +%s -r $FE_CACHE_PATH)) -gt $FE_CACHE_INTERVAL ]; then
             echo "[Cache available packages] Would you like to update? [Y/n]: \c"
             read line
             if [[ "$line" == Y* ]] || [[ "$line" == y* ]] || [ -z "$line" ]; then

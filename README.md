@@ -1,6 +1,6 @@
 # Eopkg commands enhanced with fzf
 
-Use the excellent [fzf](https://github.com/junegunn/fzf) to interactively install and uninstall [Eopkg](https://getsol.us/articles/package-management/basics/en/) packages.
+Use the excellent [fzf](https://github.com/junegunn/fzf) to interactively install and uninstall [eopkg](https://getsol.us/articles/package-management/basics/en/) packages.
 
 ## Usage
 
@@ -18,6 +18,17 @@ You can specify a search parameter, e.g., `pit git` will start your search with 
 Select/unselect multiple using `tab` and `shift-tab` by default.
 
 Previews will show `eopkg info` for the selected package.
+
+By default `fzf-eopkg` will cache available packages for faster `pit` search.
+You can disable caching by adding `export FE_CACHE=false` in your `.zshrc`
+
+Alternatively you can specify the path in which `fzf-eopkg` will use to save the
+cache file by adding `export FE_CACHE_PATH=path/to/cache/file.txt` to your
+`.zshrc`
+
+Similarly, you can change how frequently `fzf-eopkg` should update cache file
+with the `FE_CACHE_INTERVAL` environment variable (default is 129600 seconds =
+15 days)
 
 ## Getting started
 
